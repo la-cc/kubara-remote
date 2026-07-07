@@ -94,7 +94,7 @@ namespace:
 inClusterName: artem
 inClusterSecretLabels:
 ## Hub labels
-  argocd: "disabled"
+  argocd: "enabled"
   cert-manager: "enabled"
   external-dns: "enabled"
   external-secrets: "enabled"

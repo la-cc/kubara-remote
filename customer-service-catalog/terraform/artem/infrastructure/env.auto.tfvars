@@ -1,5 +1,5 @@
 ### DNS
-contact_email = "my-test@nowhere.com"
+contact_email = "artem.lajko@iits-consulting.de"
 dns_name      = "artem-dev.stackit.run"
 
 ### Global
