@@ -1,4 +1,4 @@
-version: v1alpha2
+version: v1alpha3
 clusters:
   - name: artem
     stage: dev
@@ -18,10 +18,10 @@ clusters:
     argocd:
       repo:
         https:
-          customer:
+          configs:
             url: https://github.com/la-cc/kubara-remote.git
             targetRevision: main
-          managed:
+          components:
             url: https://github.com/la-cc/kubara-remote.git
             targetRevision: main
     services:
