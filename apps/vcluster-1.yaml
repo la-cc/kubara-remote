@@ -22,41 +22,12 @@ spec:
         values: |
           vcluster:
             controlPlane:
-              coredns:
-                deployment:
-                  tolerations:
-                    - key: "role"
-                      operator: "Equal"
-                      value: "app"
-                      effect: "NoSchedule"
-                  nodeSelector:
-                    role: "app"
               proxy:
                 extraSANs:
                   - vcluster-1.artem-dev.stackit.run
               ingress:
                 enabled: false
-              statefulSet:
-                scheduling:
-                  nodeSelector:
-                    role: "app"
-                  tolerations:
-                    - key: "role"
-                      operator: "Equal"
-                      value: "app"
-                      effect: "NoSchedule"
-              backingStore:
-                etcd:
-                  deploy:
-                    statefulSet:
-                      scheduling:
-                        nodeSelector:
-                          role: "app"
-                        tolerations:
-                          - key: "role"
-                            operator: "Equal"
-                            value: "app"
-                            effect: "NoSchedule"
+
           ingressRouteTCP:
             enabled: true
             host: vcluster-1.artem-dev.stackit.run
