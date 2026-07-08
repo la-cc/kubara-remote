@@ -1,3 +1,0 @@
-traefik:
-  deployment:
-    replicas: 2
