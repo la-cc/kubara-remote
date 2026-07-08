@@ -1,0 +1,12 @@
+---
+apiVersion: kubara.io/v1alpha1
+kind: ServiceDefinition
+metadata:
+  name: sveltos
+  annotations:
+    kubara.io/category: application-management
+spec:
+  chartPath: sveltos
+  status: enabled
+  clusterTypes:
+    - hub

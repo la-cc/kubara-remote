@@ -54,6 +54,9 @@ bootstrapValues:
         homer-dashboard:
           name: homer-dashboard
           path: homer-dashboard
+        kro:
+          name: kro
+          path: kro
         kube-prometheus-stack:
           name: kube-prometheus-stack
           path: kube-prometheus-stack
@@ -82,9 +85,18 @@ bootstrapValues:
         oauth2-proxy:
           name: oauth2-proxy
           path: oauth2-proxy
+        sveltos:
+          name: sveltos
+          path: sveltos
         traefik:
           name: traefik
           path: traefik
+        vcluster:
+          name: vcluster
+          path: vcluster
+        vcluster-platform:
+          name: vcluster-platform
+          path: vcluster-platform
         velero:
           name: velero
           path: velero
@@ -102,6 +114,7 @@ inClusterSecretLabels:
   external-dns: "enabled"
   external-secrets: "enabled"
   homer-dashboard: "enabled"
+  kro: "disabled"
   kube-prometheus-stack: "enabled"
   kyverno: "enabled"
   kyverno-policies: "enabled"
@@ -111,7 +124,10 @@ inClusterSecretLabels:
   metallb: "disabled"
   metrics-server: "disabled"
   oauth2-proxy: "enabled"
+  sveltos: "enabled"
   traefik: "enabled"
+  vcluster: "disabled"
+  vcluster-platform: "disabled"
   velero: "disabled"
 
 externalSecrets:

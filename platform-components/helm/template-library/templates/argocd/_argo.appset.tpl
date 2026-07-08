@@ -19,7 +19,7 @@ spec:
     metadata:
       name: "{{ `{{name}}` }}-{{ $app.name }}"
       annotations:
-        argocd.argoproj.io/manifest-generate-paths: ".;..;/{{ $localCtx.platformConfigs.path }}/{{ `{{name}}` }}/helm/{{ $app.path }}"
+        argocd.argoproj.io/manifest-generate-paths: ".;.."
     spec:
       project: {{ default $localCtx.projectName $app.projectName }}
       sources:

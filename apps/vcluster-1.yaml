@@ -1,0 +1,84 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vcluster-1
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: vcluster-1
+    server: "https://kubernetes.default.svc"
+  project: controlplane-dev
+  sources:
+    - repoURL: https://github.com/la-cc/demos.git
+      targetRevision: main
+      path: scale-tests-with-1000-vclusters-based-on-kubara-2026/managed-service-catalog/helm/vcluster
+      helm:
+        ignoreMissingValueFiles: true
+        releaseName: "vcluster-1"
+        valueFiles:
+          - values.yaml
+        values: |
+          vcluster:
+            controlPlane:
+              coredns:
+                deployment:
+                  tolerations:
+                    - key: "role"
+                      operator: "Equal"
+                      value: "app"
+                      effect: "NoSchedule"
+                  nodeSelector:
+                    role: "app"
+              proxy:
+                extraSANs:
+                  - vcluster-1.controlplane-dev.stackit.run
+              ingress:
+                enabled: false
+              statefulSet:
+                scheduling:
+                  nodeSelector:
+                    role: "app"
+                  tolerations:
+                    - key: "role"
+                      operator: "Equal"
+                      value: "app"
+                      effect: "NoSchedule"
+              backingStore:
+                etcd:
+                  deploy:
+                    statefulSet:
+                      scheduling:
+                        nodeSelector:
+                          role: "app"
+                        tolerations:
+                          - key: "role"
+                            operator: "Equal"
+                            value: "app"
+                            effect: "NoSchedule"
+          ingressRouteTCP:
+            enabled: true
+            host: vcluster-1.controlplane-dev.stackit.run
+            annotations:
+              external-dns.alpha.kubernetes.io/target: controlplane-dev.stackit.run
+  ignoreDifferences:
+    - group: apps
+      kind: StatefulSet
+      name: vcluster-1
+      namespace: vcluster-1
+      jsonPointers:
+        - /spec/updateStrategy
+        - /spec/volumeClaimTemplates
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=false
+      - PruneLast=true
+      - FailOnSharedResource=true
+      - RespectIgnoreDifferences=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true

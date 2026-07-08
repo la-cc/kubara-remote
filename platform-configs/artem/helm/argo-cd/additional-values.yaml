@@ -1,0 +1,21 @@
+bootstrapValues:
+  applications:
+    - destination:
+        serverName: controlplane
+      info:
+        - name: type
+          value: app-of-apps
+      name: app-of-apps
+      namespace: argocd
+      projectName: controlplane-dev
+      repoPath: apps
+      repoUrl: https://github.com/la-cc/kubara-remote.git
+      ignoreDifferences:
+        - group: argoproj.io
+          kind: Application
+          jsonPointers:
+            - /status
+            - /metadata/resourceVersion
+            - /metadata/generation
+            - /metadata/managedFields
+            - /spec/ignoreDifferences
