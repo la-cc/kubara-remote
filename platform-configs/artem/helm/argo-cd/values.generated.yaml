@@ -85,9 +85,9 @@ bootstrapValues:
         oauth2-proxy:
           name: oauth2-proxy
           path: oauth2-proxy
-        sveltos:
-          name: sveltos
-          path: sveltos
+        projectsveltos:
+          name: projectsveltos
+          path: projectsveltos
         traefik:
           name: traefik
           path: traefik
@@ -124,7 +124,7 @@ inClusterSecretLabels:
   metallb: "disabled"
   metrics-server: "disabled"
   oauth2-proxy: "enabled"
-  sveltos: "enabled"
+  projectsveltos: "enabled"
   traefik: "enabled"
   vcluster: "disabled"
   vcluster-platform: "disabled"
