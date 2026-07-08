@@ -1,14 +1,13 @@
 bootstrapValues:
   applications:
     - destination:
-        serverName: controlplane
+        serverName: artem
       info:
         - name: type
           value: app-of-apps
       name: app-of-apps
       namespace: argocd
-      projectName: controlplane-dev
-      repoPath: apps
+      projectName: artem-dev
       repoUrl: https://github.com/la-cc/kubara-remote.git
       ignoreDifferences:
         - group: argoproj.io
