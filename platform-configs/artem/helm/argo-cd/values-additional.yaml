@@ -9,6 +9,7 @@ bootstrapValues:
       namespace: argocd
       projectName: artem-dev
       repoUrl: https://github.com/la-cc/kubara-remote.git
+      repoPath: apps
       ignoreDifferences:
         - group: argoproj.io
           kind: Application
