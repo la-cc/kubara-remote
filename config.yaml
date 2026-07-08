@@ -58,6 +58,12 @@ clusters:
         status: disabled
       oauth2-proxy:
         status: enabled
+      vcluster:
+        status: enabled
+      vcluster-platform:
+        status: enabled
+      projectsveltos:
+        status: enabled
       traefik:
         status: enabled
       velero:
