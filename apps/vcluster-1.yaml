@@ -9,11 +9,11 @@ spec:
   destination:
     namespace: vcluster-1
     server: "https://kubernetes.default.svc"
-  project: controlplane-dev
+  project: artem-dev
   sources:
-    - repoURL: https://github.com/la-cc/demos.git
+    - repoURL: https://github.com/la-cc/kubara-remote.git
       targetRevision: main
-      path: scale-tests-with-1000-vclusters-based-on-kubara-2026/managed-service-catalog/helm/vcluster
+      path: platform-components/helm/vcluster
       helm:
         ignoreMissingValueFiles: true
         releaseName: "vcluster-1"
@@ -33,7 +33,7 @@ spec:
                     role: "app"
               proxy:
                 extraSANs:
-                  - vcluster-1.controlplane-dev.stackit.run
+                  - vcluster-1.artem-dev.stackit.run
               ingress:
                 enabled: false
               statefulSet:
@@ -59,9 +59,9 @@ spec:
                             effect: "NoSchedule"
           ingressRouteTCP:
             enabled: true
-            host: vcluster-1.controlplane-dev.stackit.run
+            host: vcluster-1.artem-dev.stackit.run
             annotations:
-              external-dns.alpha.kubernetes.io/target: controlplane-dev.stackit.run
+              external-dns.alpha.kubernetes.io/target: artem-dev.stackit.run
   ignoreDifferences:
     - group: apps
       kind: StatefulSet
