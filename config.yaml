@@ -40,6 +40,8 @@ clusters:
         status: enabled
       homer-dashboard:
         status: enabled
+      kro:
+        status: disabled
       kube-prometheus-stack:
         status: enabled
       kyverno:
@@ -58,14 +60,70 @@ clusters:
         status: disabled
       oauth2-proxy:
         status: enabled
-      vcluster:
-        status: enabled
-      vcluster-platform:
-        status: enabled
       projectsveltos:
         status: enabled
       traefik:
         status: enabled
+      vcluster:
+        status: enabled
+      vcluster-platform:
+        status: enabled
+      velero:
+        status: disabled
+        config:
+          backupMode: fs-backup
+          backupStorage:
+            create: true
+            region: eu01
+  - name: vcluster-1
+    stage: dev
+    type: spoke
+    dnsName: vcluster-1.artem-dev.stackit.run
+    ssoOrg: la-demos
+    ssoTeam: g-gitops
+    argocd:
+      repo:
+        https:
+          configs:
+            url: https://git.example.com/platform/repo.git
+            targetRevision: main
+          components:
+            url: https://git.example.com/platform/repo.git
+            targetRevision: main
+    services:
+      cert-manager:
+        status: disabled
+        config:
+          clusterIssuer:
+            email: yourname@your-domain.de
+            name: letsencrypt-staging
+            server: https://acme-staging-v02.api.letsencrypt.org/directory
+      external-dns:
+        status: disabled
+      external-secrets:
+        status: disabled
+      kro:
+        status: enabled
+      kube-prometheus-stack:
+        status: disabled
+      kyverno:
+        status: disabled
+      kyverno-policies:
+        status: disabled
+      kyverno-policy-reporter:
+        status: disabled
+      loki:
+        status: disabled
+      longhorn:
+        status: disabled
+      metallb:
+        status: disabled
+      metrics-server:
+        status: disabled
+      oauth2-proxy:
+        status: disabled
+      traefik:
+        status: disabled
       velero:
         status: disabled
         config:
