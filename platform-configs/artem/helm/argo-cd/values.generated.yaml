@@ -48,6 +48,7 @@ bootstrapValues:
         metallb: "disabled"
         metrics-server: "disabled"
         oauth2-proxy: "disabled"
+        reloader: "disabled"
         traefik: "disabled"
         velero: "disabled"
 
@@ -113,6 +114,9 @@ bootstrapValues:
         projectsveltos:
           name: projectsveltos
           path: projectsveltos
+        reloader:
+          name: reloader
+          path: reloader
         traefik:
           name: traefik
           path: traefik
@@ -150,6 +154,7 @@ inClusterSecretLabels:
   metrics-server: "disabled"
   oauth2-proxy: "enabled"
   projectsveltos: "enabled"
+  reloader: "disabled"
   traefik: "enabled"
   vcluster: "enabled"
   vcluster-platform: "enabled"
