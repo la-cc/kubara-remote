@@ -77,3 +77,5 @@ bin/
 
 k8s.yaml
 clustersecretstore.yaml
+
+vcluster*
